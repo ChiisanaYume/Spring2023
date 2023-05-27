@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--Spring的配置文件-->
+    <!--这个配置文件可以不止有一个-->
+    <!--idea工具为我们提供了这个文件的模板-->
+    <!--这个文件一般放在类路径下，即resources目录下-->
+
+    <!--bean标签-->
+    <!--id 这个bean的身份证号，唯一标识，不能重复-->
+    <!--class 必须填写类的全限定类名-->
+    <bean id="user" class="com.faintdream.spring6.bean.User"/>
+    <bean id="dao.mysql" class="com.faintdream.spring6.dao.impl.UserDaoImplMySQL"/>
+</beans>
