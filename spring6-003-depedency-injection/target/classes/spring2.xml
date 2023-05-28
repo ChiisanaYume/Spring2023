@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--构造注入-->
+    <bean id="userDaoImpl" class="com.faintdream.spring6.dao.impl.UserDaoImplMySQL"/>
+    <bean id="vipDaoImpl" class="com.faintdream.spring6.dao.impl.VipDaoImplMySQL"/>
+
+    <!--根据下标-->
+    <bean id="customerService01" class="com.faintdream.spring6.service.impl.CustomerServiceImpl">
+
+        <!--index属性指定参数下标，第一个参数是0，第二个参数是1-->
+        <!--ref属性用来指定注入的bean的id-->
+
+        <!--指定构造方法的第一个参数-->
+        <constructor-arg index="0" ref="userDaoImpl"/>
+        <!--指定构造方法的第二个参数-->
+        <constructor-arg index="1" ref="vipDaoImpl"/>
+    </bean>
+
+    <!--根据参数名-->
+    <bean id="customerService02" class="com.faintdream.spring6.service.impl.CustomerServiceImpl">
+
+        <!--index属性指定参数名，-->
+        <!--ref属性用来指定注入的bean的id-->
+
+        <constructor-arg name="userDao" ref="userDaoImpl"/>
+        <constructor-arg name="vipDao" ref="vipDaoImpl"/>
+    </bean>
+
+    <!--根据参数名-->
+    <bean id="customerService03" class="com.faintdream.spring6.service.impl.CustomerServiceImpl">
+
+        <!--不指定参数名，也不指定下标-->
+        <constructor-arg ref="userDaoImpl"/>
+        <constructor-arg ref="vipDaoImpl"/>
+
+    </bean>
+</beans>

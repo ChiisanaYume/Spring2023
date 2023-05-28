@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--Spring的配置文件-->
+    <!--这个配置文件可以不止有一个-->
+    <!--idea工具为我们提供了这个文件的模板-->
+    <!--这个文件一般放在类路径下，即resources目录下-->
+
+    <!--bean标签-->
+    <!--id 这个bean的身份证号，唯一标识，不能重复-->
+    <!--class 必须填写类的全限定类名-->
+    <bean id="userDaoImplMySQL" class="com.faintdream.spring6.dao.impl.UserDaoImplMySQL"/>
+
+    <bean id="vipDaoImplMySQL" class="com.faintdream.spring6.dao.impl.VipDaoImplMySQL"/>
+
+    <bean id="userServiceImpl" class="com.faintdream.spring6.service.impl.UserServiceImpl">
+
+        <!--property标签-->
+        <!--name set方法的方法名，去掉set，首字母大写-->
+        <!--ref 翻译为引用(references) ref后面指定要注入的bean id-->
+        <property name="userDao" ref="userDaoImplMySQL"/>
+
+    </bean>
+
+    <bean id="vipServiceImpl" class="com.faintdream.spring6.service.impl.VipServiceImpl">
+        <property name="vipDao" ref="vipDaoImplMySQL"/>
+    </bean>
+</beans>

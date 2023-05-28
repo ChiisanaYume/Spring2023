@@ -12,4 +12,5 @@
     <!--class 必须填写类的全限定类名-->
     <bean id="user" class="com.faintdream.spring6.bean.User"/>
     <bean id="dao.mysql" class="com.faintdream.spring6.dao.impl.UserDaoImplMySQL"/>
+    <bean id="date" class="java.util.Date"/>
 </beans>
