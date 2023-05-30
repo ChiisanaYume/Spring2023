@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="orderDao" class="com.faintdream.spring6.dao.impl.OrderDaoImplMySQL"/>
+
+    <!--外部bean(使用ref引入,这就是注入外部bean)-->
+    <bean id="orderServiceImpl1" class="com.faintdream.spring6.service.impl.OrderServiceImpl">
+        <property name="dao" ref="orderDao"/>
+    </bean>
+
+    <!--内部bean(内部嵌套一个bean,这就是内部bean)-->
+    <bean id="orderServiceImpl2" class="com.faintdream.spring6.service.impl.OrderServiceImpl">
+
+        <property name="dao">
+            <bean class="com.faintdream.spring6.dao.impl.OrderDaoImplMySQL"/>
+        </property>
+    </bean>
+
+    <!--简单类型-->
+    <!--简单类型使用value赋值-->
+    <bean id="user" class="com.faintdream.spring6.bean.User">
+        <property name="id" value="001"/>
+        <property name="name" value="Kirara"/>
+        <property name="password" value="nikonikokawai"/>
+    </bean>
+
+    <bean id="testType" class="com.faintdream.spring6.bean.IsSimpleValueType">
+        <property name="name" value="Amber"/>
+        <property name="age" value="16"/>
+        <property name="character" value="n"/>
+        <property name="money1" value="100"/>
+        <property name="money2" value="200000"/>
+        <property name="niko" value="false"/>
+        <property name="uri" value="https://www.example.com/path?param1=value1&amp;param2=value2#fragment"/>
+        <property name="url" value="https://www.example.com/path?param1=value1&amp;param2=value2#fragment"/>
+        <!--date赋值要用特殊的格式 Sun May 28 22:12:53 CST 2023-->
+        <!--在实际开发中，一般把date当作复杂类型，使用ref(引用)赋值-->
+        <property name="date" value="Sun May 28 22:12:53 CST 2023"/>
+
+    </bean>
+
+    <bean id="myDataSource" class="com.faintdream.spring6.jdbc.MyDataSource">
+        <property name="driver" value="com.mysql.cj.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/faintdream"/>
+        <property name="username" value="root"/>
+        <property name="password" value="333"/>
+    </bean>
+
+    <!--注入数组-->
+    <bean id="person" class="com.faintdream.spring6.bean.Person">
+        <property name="names">
+            <array>
+                <value>Amber</value>
+                <value>Klee</value>
+                <value>Nahida</value>
+                <value>Yaoyao</value>
+                <value>Sayo</value>
+                <value>Kirara</value>
+            </array>
+        </property>
+        <property name="students">
+            <array>
+                <ref bean="studentBean1"/>
+                <ref bean="studentBean2"/>
+                <ref bean="studentBean3"/>
+                <ref bean="studentBean2"/>
+                <ref bean="studentBean1"/>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="studentBean1" class="com.faintdream.spring6.bean.Student">
+        <property name="name" value="安柏" />
+        <property name="sex" value="W"/>
+    </bean>
+    <bean id="studentBean2" class="com.faintdream.spring6.bean.Student">
+        <property name="name" value="可莉" />
+        <property name="sex" value="W"/>
+    </bean>
+    <bean id="studentBean3" class="com.faintdream.spring6.bean.Student">
+        <property name="name" value="纳西妲" />
+        <property name="sex" value="W"/>
+    </bean>
+
+    <!--注入list集合-->
+    <bean id="person2" class="com.faintdream.spring6.bean.Person2">
+        <property name="names">
+            <list>
+                <value>Amber</value>
+                <value>Klee</value>
+                <value>Nahida</value>
+            </list>
+        </property>
+        <property name="students">
+            <list>
+                <ref bean="studentBean1"/>
+                <ref bean="studentBean2"/>
+                <ref bean="studentBean3"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--注入set集合-->
+    <bean id="person3" class="com.faintdream.spring6.bean.Person3">
+       <property name="studentSet">
+           <set>
+               <ref bean="studentBean1"/>
+               <ref bean="studentBean2"/>
+               <ref bean="studentBean3"/>
+           </set>
+       </property>
+    </bean>
+
+    <!--注入Map集合-->
+    <bean id="f4" class="com.faintdream.spring6.bean.F4Map">
+        <property name="f" >
+            <map>
+                <entry key="1" value="黎明"/>
+                <entry key="2" value="刘德华"/>
+                <entry key="3" value="张学友"/>
+                <entry key="4" value="郭富城"/>
+            </map>
+        </property>
+        <property name="studentMap">
+            <map>
+                <entry key="1" value-ref="studentBean1"/>
+                <entry key="2" value-ref="studentBean2"/>
+                <entry key="3" value-ref="studentBean3"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--注入properties属性类对象-->
+    <bean id="myProperties" class="com.faintdream.spring6.bean.MyProperties">
+        <constructor-arg name="defaults" >
+            <props>
+                <prop key="driver">com.mysql.cj.jdbc.Driver</prop>
+                <prop key="url">jdbc:mysql//localhost:3306/faintdream</prop>
+                <prop key="username">root</prop>
+                <prop key="password">333</prop>
+            </props>
+        </constructor-arg>
+    </bean>
+
+    <!--正常赋值-->
+    <bean id="s1" class="java.lang.String">
+        <constructor-arg name="original" value="Annie"/>
+    </bean>
+
+    <!--赋空串-->
+    <bean id="s2" class="java.lang.String">
+        <constructor-arg name="original" value=""/>
+    </bean>
+
+    <!--赋null -->
+    <bean id="s3" class="java.lang.String">
+        <constructor-arg name="original" >
+            <null/>
+        </constructor-arg>
+    </bean>
+
+</beans>
+

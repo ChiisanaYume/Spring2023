@@ -1,0 +1,14 @@
+在 Spring 中，以下类型被认为是简单类型（Simple Type）：
+
+1. 基本类型（Primitive Types）：如 `int`、`float`、`boolean` 等。
+2. 包装类型（Wrapper Types）：如 `Integer`、`Float`、`Boolean` 等。
+3. 字符串类型（String Type）：如 `String`。
+4. 枚举类型（Enum Types）：如定义的枚举类。
+5. 日期和时间类型（Date and Time Types）：如 `java.util.Date`、`java.time.LocalDate` 等。
+6. 数组类型（Array Types）：如 `int[]`、`String[]` 等。
+7. 集合类型（Collection Types）：如 `java.util.List`、`java.util.Set` 等，包括其泛型形式。
+8. Map 类型（Map Type）：如 `java.util.Map`，包括其泛型形式。
+
+对于这些简单类型，Spring 在进行依赖注入和类型转换时会使用默认的转换规则，无需额外配置。例如，将字符串转换为整数、将字符串转换为日期等。
+
+需要注意的是，对于自定义的复杂类型（如自定义类、接口等），Spring 通常需要进行更复杂的依赖注入和类型转换操作，可能需要配置相应的转换器或使用其他特定的注解来完成。

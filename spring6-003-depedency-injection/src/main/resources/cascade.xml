@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="studentBean" class="com.faintdream.spring6.bean.Student"/>
+    <!--
+        使用级联属性赋值要注意两点
+        1.配置的顺序不能颠倒；必须严格按照下面顺序
+        2.属性必须提供getter方法
+    -->
+
+    <!--级联注入-->
+    <bean id="clazzBean" class="com.faintdream.spring6.bean.Clazz">
+        <property name="name" value="高二3班"/>
+
+        <!--级联属性赋值-->
+        <property name="student" ref="studentBean"/>
+        <property name="student.name" value="王小明"/>
+        <property name="student.sex" value="M"/>
+
+    </bean>
+</beans>
