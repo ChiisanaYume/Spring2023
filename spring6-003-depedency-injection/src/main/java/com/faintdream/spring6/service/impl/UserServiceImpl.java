@@ -1,6 +1,7 @@
 package com.faintdream.spring6.service.impl;
 
 import com.faintdream.spring6.dao.UserDao;
+import com.faintdream.spring6.dao.impl.UserDaoImplMySQL;
 import com.faintdream.spring6.service.UserService;
 
 public class UserServiceImpl implements UserService {

@@ -12,6 +12,11 @@
         <module>Spring6-001-revelation</module>
         <module>spring6-002-first</module>
         <module>spring6-003-depedency-injection</module>
+        <module>spring6-004-scope</module>
+        <module>simple-factory</module>
+        <module>spring6-005-instantiation</module>
+        <module>factory-method</module>
+        <module>spring6-006-lifecycle</module>
     </modules>
 
     <properties>
@@ -19,5 +24,10 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+
+
+    </dependencies>
 
 </project>

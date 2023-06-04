@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Spring提供的实例化方式-->
+
+    <!--默认-->
+    <!--在spring配置文件中直接配置类全路径-->
+    <!--Spring会自动调用该类的无参数构造方法来实例化Bean-->
+    <bean id="sb" class="com.faintdream.spring6.bean.StringBean"/>
+
+    <!--简单工厂-->
+    <!--需要告诉Spring，那个类的那个方法获取Bean-->
+    <!--factory-method属性指定的是工厂类当中的静态方法-->
+    <bean id="star" class="com.faintdream.spring6.bean.StarFactory" factory-method="get"/>
+
+    <!--工厂方法-->
+    <!--通过factory-bean属性 + factory-method属性共同完成-->
+    <!--factory-bean 告诉Spring框架，调用那个对象来获取Bean-->
+    <!--factory-method 告诉Spring框架,调用那个方法或获取Bean-->
+    <bean id="lolitaFactory" class="com.faintdream.spring6.bean.LolitaFactory"/>
+    <bean id="lolita" factory-bean="lolitaFactory" factory-method="get"/>
+
+    <!--通过实现FactoryBean接口-->
+    <!--这种方式其实就是工厂方式的简化-->
+    <!--由于类实现了Factory接口，所以这个类是一个特殊的类，不需要手动指定factory-bean,factory-method-->
+    <!--通过一个特殊的bean;返回一个bean person对象-->
+    <bean id="person" class="com.faintdream.spring6.bean.PersonFactory"/>
+
+    <!--实战范例-->
+    <bean id="date" class="com.faintdream.spring6.bean.DateFactory">
+        <!--property name="strDate" value="2002-02-02"/-->
+        <constructor-arg name="strDate" value="2002-02-02"/>
+    </bean>
+
+    <bean id="student" class="com.faintdream.spring6.bean.Student">
+        <property name="name" value="Amber"/>
+        <property name="birth" ref="date"/>
+    </bean>
+</beans>

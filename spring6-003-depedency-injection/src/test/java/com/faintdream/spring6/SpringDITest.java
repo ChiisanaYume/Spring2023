@@ -1,7 +1,9 @@
 package com.faintdream.spring6;
 
 import com.faintdream.spring6.bean.*;
+import com.faintdream.spring6.jdbc.MyDataSource;
 import com.faintdream.spring6.service.OrderService;
+import com.faintdream.spring6.service.UserService;
 import com.faintdream.spring6.service.impl.CustomerServiceImpl;
 import com.faintdream.spring6.service.impl.UserServiceImpl;
 import com.faintdream.spring6.service.impl.VipServiceImpl;
@@ -240,6 +242,51 @@ public class SpringDITest {
         logger.info(s1);
         logger.info(s2);
         logger.info(s3);
+    }
+
+    /**
+     * 自动装配 - 根据名字
+     * */
+    @Test
+    public void setAutoWireTest(){
+
+        // 创建Spring容器
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-autowire.xml");
+
+        // 构建bean
+        OrderService orderService2 = applicationContext.getBean("orderService2", OrderService.class);
+
+        // 测试
+        orderService2.order();
+    }
+
+    /**
+     * 自动装配 - 根据类型
+     * */
+    @Test
+    public void setAutoWireTest2(){
+
+        // 创建Spring容器
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-autowire.xml");
+
+        // 构建bean
+        UserService userService = applicationContext.getBean("userService",UserService.class);
+
+        // 测试
+        userService.saveUser();
+    }
+
+    @Test
+    public void setByPropertiesTest(){
+
+        // 创建Spring容器
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-property.xml");
+
+        // 构建bean
+        MyDataSource dataSource = applicationContext.getBean("ds4", MyDataSource.class);
+
+        // 测试
+        logger.info(dataSource.toString());
     }
 }
 
