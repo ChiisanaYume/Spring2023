@@ -3,8 +3,25 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="user" class="com.faintdream.spring6.bean.User" init-method="init" destroy-method="destroy">
+    <!--Spring容器只对singleton(单例)的Bean进行完整的声明周期管理-->
+    <!--如果是prototype(多例)作用域的Bean,spring容器只负责将Bean初始化完毕-->
+    <!--Bean初始化完毕之后，Spring容器就不再管了Bean的生命周期了-->
+    <!--也就是不会调用Bean的destroy()的方法-->
+
+    <!--配置bean后处理器-->
+    <!--bean后处理器作用于整个xml文件-->
+    <bean class="com.faintdream.spring6.bean.LogBeanPostProcessor"/>
+
+    <!--需要手动指定初始化的方法，和销毁的方法-->
+    <bean id="user" class="com.faintdream.spring6.bean.User" init-method="init" destroy-method="destroy" scope="prototype">
         <property name="name" value="纳西妲"/>
     </bean>
 
+    <bean id="user2" class="com.faintdream.spring6.bean.User2" init-method="init" destroy-method="destroy" scope="prototype">
+        <constructor-arg name="name" value="布耶尔"/>
+    </bean>
+
+    <bean id="vip" class="com.faintdream.spring6.bean.Vip" init-method="init" destroy-method="destroyByBean" >
+        <property name="name" value="智慧之神"/>
+    </bean>
 </beans>

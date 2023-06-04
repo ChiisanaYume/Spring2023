@@ -20,4 +20,19 @@ public class UserTest {
 
         temp.close();
     }
+
+    @Test
+    public void lifecycleTest2(){
+
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        User2 user2 = applicationContext.getBean("user2", User2.class);
+
+        //使用对象
+        System.out.println("第四步:" + user2.getClass().getSimpleName() + "bean：使用bean(对象)");
+
+        //手动关闭spring容器
+        ClassPathXmlApplicationContext temp = (ClassPathXmlApplicationContext) applicationContext;
+
+        temp.close();
+    }
 }
