@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--singleton + setter模式下的循环依赖是没有任何问题的-->
+    <!--singleton表示在整个Spring容器中的对象是单例的，是唯一的-->
+    <!--
+        主要的原因是，在这种模式下Spring对Bean的管理主要分为清晰的两个阶段
+            第一个阶段:在Spring容器加载的时候，实例化Bean,只要Bean实例化之后，马上进行"曝光"【不等属性赋值就曝光】
+            第二个阶段:属性曝光之后，在进行赋值（调用get方法）
+
+            核心解决方案是，实例化对象和对象的属性赋值是分两个阶段完成的
+    -->
+    <bean id="husband1" class="com.faintdream.spring6.bean.Husband" scope="singleton">
+        <property name="name" value="王宝强"/>
+        <property name="wife" ref="wife1"/>
+    </bean>
+
+    <bean id="wife1" class="com.faintdream.spring6.bean.Wife" scope="singleton">
+        <property name="name" value="马蓉"/>
+        <property name="husband" ref="husband1"/>
+    </bean>
+
+    <!--prototype + setter模式下的循环依赖 递归无法正常执行-->
+    <bean id="husband2" class="com.faintdream.spring6.bean.Husband" scope="prototype">
+        <property name="name" value="王宝强"/>
+        <property name="wife" ref="wife2"/>
+    </bean>
+
+    <bean id="wife2" class="com.faintdream.spring6.bean.Wife" scope="prototype">
+        <property name="name" value="马蓉"/>
+        <property name="husband" ref="husband2"/>
+    </bean>
+
+    <!--如果之后一个Bean是protoType 是可以正常正常执行-->
+    <bean id="husband3" class="com.faintdream.spring6.bean.Husband" scope="prototype">
+        <property name="name" value="王宝强"/>
+        <property name="wife" ref="wife3"/>
+    </bean>
+
+    <bean id="wife3" class="com.faintdream.spring6.bean.Wife" scope="singleton">
+        <property name="name" value="马蓉"/>
+        <property name="husband" ref="husband3"/>
+    </bean>
+
+    <!--构造注入 递归无法正常执行-->
+    <bean id="husband4" class="com.faintdream.spring6.bean.Husband" scope="singleton">
+
+        <constructor-arg name="name" value="王宝强"/>
+        <constructor-arg name="wife" ref="wife4"/>
+    </bean>
+
+    <bean id="wife4" class="com.faintdream.spring6.bean.Wife" scope="singleton">
+        <constructor-arg name="name" value="马蓉"/>
+        <constructor-arg name="husband" ref="husband4"/>
+    </bean>
+
+    <!--构造注入 递归无法正常执行-->
+    <bean id="husband5" class="com.faintdream.spring6.bean.Husband" scope="prototype">
+
+        <constructor-arg name="name" value="王宝强"/>
+        <constructor-arg name="wife" ref="wife5"/>
+    </bean>
+
+    <bean id="wife5" class="com.faintdream.spring6.bean.Wife" scope="singleton">
+        <property name="name" value="马蓉"/>
+        <property name="husband" ref="husband1"/>
+    </bean>
+</beans>

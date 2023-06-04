@@ -17,6 +17,7 @@
         <module>spring6-005-instantiation</module>
         <module>factory-method</module>
         <module>spring6-006-lifecycle</module>
+        <module>spring6-007-circular-dependency</module>
     </modules>
 
     <properties>
