@@ -9,6 +9,18 @@
         <fileset id="fileset2" name="Spring1" removed="false">
           <file>file://$MODULE_DIR$/spring6-008-annotation/src/main/resources/spring1.xml</file>
         </fileset>
+        <fileset id="fileset3" name="Spring Choose" removed="false">
+          <file>file://$MODULE_DIR$/spring6-008-annotation/src/main/resources/spring-choose.xml</file>
+        </fileset>
+        <fileset id="fileset4" name="Spring Di Annotation" removed="false">
+          <file>file://$MODULE_DIR$/spring6-008-annotation/src/main/resources/spring-di-annotation.xml</file>
+        </fileset>
+        <fileset id="fileset5" name="Spring2" removed="false">
+          <file>file://$MODULE_DIR$/spring6-008-annotation/src/main/resources/spring2.xml</file>
+        </fileset>
+        <fileset id="fileset6" name="Spring3" removed="false">
+          <file>file://$MODULE_DIR$/spring6-008-annotation/src/main/resources/spring3.xml</file>
+        </fileset>
       </configuration>
     </facet>
   </component>
