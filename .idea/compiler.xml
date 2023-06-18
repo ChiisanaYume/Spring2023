@@ -14,6 +14,7 @@
         <module name="spring6-003-depedency-injection" />
         <module name="spring6-001-revelation" />
         <module name="spring6-005-instantiation" />
+        <module name="spring6-008-annotation" />
         <module name="spring6-004-scope" />
       </profile>
     </annotationProcessing>
