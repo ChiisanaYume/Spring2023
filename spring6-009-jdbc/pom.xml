@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring6-008-annotation</artifactId>
+    <artifactId>spring6-009-jdbc</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -51,11 +51,19 @@
             <version>2.20.0</version>
         </dependency>
 
-        <!--jakarta.annotation-->
+        <!--spring-jdbc-->
         <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-            <version>2.1.1</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>6.0.0</version>
+        </dependency>
+
+        <!--MySql驱动-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
         </dependency>
     </dependencies>
+
 </project>
