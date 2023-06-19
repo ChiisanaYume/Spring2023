@@ -1,0 +1,21 @@
+`@Resource` 注解可以用于标记需要进行依赖注入的字段、方法或构造函数。
+当使用 `@Resource` 注解时，可以在括号中提供一些参数来配置依赖注入的行为。
+
+下面是一些常用的 `@Resource` 注解参数：
+
+1. `name`：指定依赖对象的名称。例如：`@Resource(name = "myDependency")`
+   这将会将名为 "myDependency" 的依赖对象注入到字段、方法或构造函数中。
+
+2. `type`：指定依赖对象的类型。例如：`@Resource(type = MyDependency.class)`
+   这将会将类型为 `MyDependency` 的依赖对象注入到字段、方法或构造函数中。
+
+3. `mappedName`：指定依赖对象在命名服务中的映射名称。例如：`@Resource(mappedName = "java:comp/env/myDependency")`
+   这将会通过命名服务中的 "java:comp/env/myDependency" 映射名称获取依赖对象进行注入。
+
+4. `shareable`：指定依赖对象是否可共享。默认为 `true`。例如：`@Resource(shareable = false)`
+   如果将 `shareable` 设置为 `false`，则每次注入都会创建一个新的依赖对象实例。
+
+这些参数可以根据需要来进行组合使用，以满足特定的依赖注入需求。
+
+需要注意的是，`@Resource` 注解是 JavaEE（或 Jakarta EE）的一部分，它的具体行为和可用参数可能会因不同的容器或框架而有所差异。
+因此，在使用时最好参考相关的规范和文档，以确保正确使用和理解 `@Resource` 注解。

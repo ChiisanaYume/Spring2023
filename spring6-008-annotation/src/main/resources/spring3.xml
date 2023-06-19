@@ -6,5 +6,5 @@
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 给Spring指定要扫描哪些包 -->
-    <context:component-scan base-package="com.faintdream.spring.bean"/>
+    <context:component-scan base-package="com.faintdream.spring.bean5"/>
 </beans>
