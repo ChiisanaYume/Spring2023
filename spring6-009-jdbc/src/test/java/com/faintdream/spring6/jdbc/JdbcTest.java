@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -97,5 +98,68 @@ public class JdbcTest {
 
         System.out.println("总记录条数:" + total);
 
+    }
+
+    @Ignore
+    @Test
+    public void addBatchTest(){
+        JdbcTemplate template = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+
+        // 批量添加
+        String sql = "INSERT into t_role_physique(no,physique,physique_c) values(?,?,?)";
+
+        Object[] obj1 = {7,"Old man","老头"};
+        Object[] obj2 = {8,"Old woman","老太太"};
+        Object[] obj3 = {9,"Waixingren","外星人"};
+
+        List<Object[]> list = new ArrayList<>();
+        list.add(obj1);
+        list.add(obj2);
+        list.add(obj3);
+
+        int[] count = template.batchUpdate(sql, list);
+
+        System.out.println(count);
+    }
+
+    @Ignore
+    @Test
+    public void updateBathTest(){
+        JdbcTemplate template = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+
+        // 批量更新
+        String sql = "UPDATE t_role_physique set physique=?,physique_c=? WHERE no=?";
+
+        Object[] obj1 = {"Old man","老Boy","7"};
+        Object[] obj2 = {"Old woman","老Baby","8"};
+
+        List<Object[]> list = new ArrayList<>();
+        list.add(obj1);
+        list.add(obj2);
+
+        int[] count = template.batchUpdate(sql, list);
+        System.out.println(count);
+    }
+
+    @Ignore
+    @Test
+    public void deleteBatchTest(){
+        JdbcTemplate template = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+
+        // 批量添加
+        String sql = "DELETE FROM t_role_physique WHERE no=?";
+
+        Object[] obj1 = {7};
+        Object[] obj2 = {8};
+        Object[] obj3 = {9};
+
+        List<Object[]> list = new ArrayList<>();
+        list.add(obj1);
+        list.add(obj2);
+        list.add(obj3);
+
+        int[] count = template.batchUpdate(sql, list);
+
+        System.out.println(count);
     }
 }
