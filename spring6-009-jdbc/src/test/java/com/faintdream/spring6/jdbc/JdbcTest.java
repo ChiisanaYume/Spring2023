@@ -7,10 +7,15 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Component;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -161,5 +166,33 @@ public class JdbcTest {
         int[] count = template.batchUpdate(sql, list);
 
         System.out.println(count);
+    }
+
+    @Test
+    public void callbackTest(){
+        // 如果要写jdbc代码，可以使用callback回调函数
+        JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+
+        // SQL语句
+        String sql = "SELECT no,physique,physique_c FROM t_role_physique WHERE no=?";
+
+        // 执行查询(并注册回调函数)
+        Object o = jdbcTemplate.execute(sql, new PreparedStatementCallback<Object>() {
+
+            @Override
+            public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+                RolePhysique rolePhysique = null;
+                ps.setString(1, "6");
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    rolePhysique = new RolePhysique(rs.getString("no"), rs.getString("physique"),
+                            rs.getString("physique_c"));
+                }
+                return rolePhysique;
+            }
+        });
+
+        System.out.println(o);
+
     }
 }

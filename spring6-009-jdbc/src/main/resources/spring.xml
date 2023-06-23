@@ -11,14 +11,27 @@
     <context:component-scan base-package="com.faintdream.spring6.jdbc"/>
 
     <!-- 从指定的配置文件中加载属性 -->
-    <context:property-placeholder location="classpath:myDataSource.properties" />
+    <context:property-placeholder location="classpath:myDataSource.properties"/>
 
 
     <!-- 配置自己写的数据源 -->
     <!--bean id="myDataSource" class="com.faintdream.spring6.jdbc.MyDataSource"/-->
 
-    <!-- 配置jdbcTemplate-->
+    <!-- 配置jdbcTemplate -->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="myDataSource"/>
+    </bean>
+
+    <!-- 另外一个jdbcTemplate -->
+    <bean id="jdbcTemplate1" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="ds"/>
+    </bean>
+
+    <!-- 配置druid连接池-->
+    <bean id="ds" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/genshin"/>
+        <property name="username" value="root"/>
+        <property name="password" value="333"/>
     </bean>
 </beans>
