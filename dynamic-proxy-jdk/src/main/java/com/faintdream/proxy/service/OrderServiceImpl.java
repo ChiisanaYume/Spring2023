@@ -49,6 +49,14 @@ public class OrderServiceImpl implements  OrderService{
     }
 
     /**
+     * 查看订单名
+     */
+    @Override
+    public String getName() {
+        return "订单AA" + Math.random();
+    }
+
+    /**
      * 模拟正常的业务
      * */
     private void simulate(){

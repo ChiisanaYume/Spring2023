@@ -8,7 +8,8 @@ package com.faintdream.proxy.service;
 public class Client {
     public static void main(String[] args) {
         // test1();
-        test2();
+        // test2();
+        test3();
     }
 
     private static void test1(){
@@ -20,6 +21,13 @@ public class Client {
 
     private static void test2(){
         OrderService os = new OrderServiceImplSub();
+        os.generate();
+        os.modify();
+        os.detail();
+    }
+
+    private static void test3(){
+        OrderService os = new OrderServiceProxy(new OrderServiceImpl());
         os.generate();
         os.modify();
         os.detail();
