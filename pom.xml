@@ -22,6 +22,9 @@
         <module>spring6-009-jdbc</module>
         <module>static-proxy</module>
         <module>dynamic-proxy-jdk</module>
+        <module>dynamic-proxy-cglib</module>
+        <module>spring6-010-aop-aspectj-anno</module>
+        <module>spring6-011-aspectj-xml</module>
     </modules>
 
     <properties>
