@@ -10,22 +10,20 @@
         <module name="simple-factory" />
         <module name="spring6-007-circular-dependency" />
         <module name="spring6-002-first" />
+        <module name="spring6-012-aop-realapp" />
         <module name="dynamic-proxy-jdk" />
         <module name="spring6-009-jdbc" />
         <module name="spring6-004-scope" />
         <module name="factory-method" />
         <module name="spring6-003-depedency-injection" />
         <module name="spring6-010-aop-aspectj-anno" />
-        <module name="spring6-011-aspectj-xml" />
         <module name="spring6-001-revelation" />
         <module name="spring6-005-instantiation" />
         <module name="static-proxy" />
         <module name="dynamic-proxy-cglib" />
+        <module name="spring6-011-aop-aspectj-xml" />
         <module name="spring6-008-annotation" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="spring6-011-aop-aspectj-xml" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
