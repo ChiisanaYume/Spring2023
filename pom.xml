@@ -26,6 +26,7 @@
         <module>spring6-010-aop-aspectj-anno</module>
         <module>spring6-011-aop-aspectj-xml</module>
         <module>spring6-012-aop-realapp</module>
+        <module>spring6-013-jdbc-bank</module>
     </modules>
 
     <properties>
