@@ -15,7 +15,7 @@
         <module name="spring6-009-jdbc" />
         <module name="spring6-004-scope" />
         <module name="factory-method" />
-        <module name="spring6-013-jdbc-bank" />
+        <module name="spring6-014-jdbc-bank" />
         <module name="spring6-003-depedency-injection" />
         <module name="spring6-010-aop-aspectj-anno" />
         <module name="spring6-001-revelation" />
@@ -26,5 +26,8 @@
         <module name="spring6-008-annotation" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring6-013-jdbc-bank" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
