@@ -24,6 +24,7 @@
         <module name="static-proxy" />
         <module name="dynamic-proxy-cglib" />
         <module name="spring6-011-aop-aspectj-xml" />
+        <module name="spring6-016-junit" />
         <module name="spring6-008-annotation" />
       </profile>
     </annotationProcessing>
