@@ -32,7 +32,7 @@ public class BankServiceImpl2 implements BankService {
      * @param act 账户对象
      */
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    //@Transactional(propagation = Propagation.REQUIRED)
     public void save(Act act) {
         dao.insert(act);
     }

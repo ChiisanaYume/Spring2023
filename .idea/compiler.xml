@@ -14,6 +14,7 @@
         <module name="dynamic-proxy-jdk" />
         <module name="spring6-009-jdbc" />
         <module name="spring6-004-scope" />
+        <module name="spring6-015-jdbc-bank2" />
         <module name="factory-method" />
         <module name="spring6-014-jdbc-bank" />
         <module name="spring6-003-depedency-injection" />
