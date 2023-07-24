@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.faintdream.spring6.bank.mapper.ActMapper">
+    <resultMap id="act" type="com.faintdream.spring6.bank.pojo.Act">
+        <!--id property="id" column="id"/-->
+        <result property="actNo" column="act_no"/>
+        <result property="balance" column="balance"/>
+        <!-- 其他字段映射 -->
+    </resultMap>
+
+    <select id="selectByActNo" resultMap="act">
+        SELECT act_no,balance FROM t_act2 WHERE act_no=#{actNo}
+    </select>
+
+    <select id="selectAll" resultMap="act">
+        SELECT act_no,balance FROM t_act2
+    </select>
+
+    <update id="update"  parameterType="com.faintdream.spring6.bank.pojo.Act">
+        UPDATE t_act2 SET balance=#{balance} WHERE act_no=#{actNo}
+    </update>
+</mapper>

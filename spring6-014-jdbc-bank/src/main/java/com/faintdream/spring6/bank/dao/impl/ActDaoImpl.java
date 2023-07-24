@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Repository()
 public class ActDaoImpl implements ActDao {
 
     private JdbcTemplate jdbcTemplate;

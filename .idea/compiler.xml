@@ -20,6 +20,7 @@
         <module name="spring6-003-depedency-injection" />
         <module name="spring6-010-aop-aspectj-anno" />
         <module name="spring6-001-revelation" />
+        <module name="spring6-017-mybatis" />
         <module name="spring6-005-instantiation" />
         <module name="static-proxy" />
         <module name="dynamic-proxy-cglib" />

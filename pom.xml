@@ -29,6 +29,7 @@
         <module>spring6-014-jdbc-bank</module>
         <module>spring6-015-jdbc-bank2</module>
         <module>spring6-016-junit</module>
+        <module>spring6-017-mybatis</module>
     </modules>
 
     <properties>

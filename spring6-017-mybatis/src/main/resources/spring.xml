@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--组件扫描-->
+    <context:component-scan base-package="com.faintdream.spring6.bank"/>
+
+    <!--引入外部的属性配置文件-->
+    <context:property-placeholder location="jdbc.properties"/>
+
+    <!--配置数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--配置SqlSessionFactoryBean-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--指定mybatis核心配置文件-->
+        <property name="configLocation" value="mybatis-config.xml"/>
+        <!--指定别名-->
+        <property name="typeAliasesPackage" value="com.faintdream.bank.pojo"/>
+    </bean>
+
+    <!--Mapper扫描配置器,扫描Mapper文件-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 设置扫描的基础包路径(设置 Mapper 接口所对应的 XML 配置文件路径) -->
+        <!-- 注意:XxxMapper.xml 和 XxxMapper接口都要在这个目录下-->
+        <property name="basePackage" value="com.faintdream.spring6.bank.mapper" />
+    </bean>
+
+    <!--配置事务管理器-->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--开启事务注解驱动器，开启事务注解。告诉Spring框架，采用注解的方法去控制事务-->
+    <tx:annotation-driven transaction-manager="txManager"/>
+</beans>
